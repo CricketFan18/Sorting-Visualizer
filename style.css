@@ -1,0 +1,111 @@
+:root {
+    --text1: "Poppins", serif;
+    --text2: "Varela Round", serif; 
+    --textColor: #FEFAF6;
+}
+
+body {
+    margin: 0;
+    background-color: var(--textColor);
+}
+h1 {
+    margin: 0;
+}
+
+/* Layout */
+
+.heading {
+    background-color: #2E5077;
+    color: var(--textColor);
+    padding: 0.5em;
+    text-align: center;
+    font-size: 1.25rem;
+    border-bottom: 2px solid rgb(129, 118, 118) ;
+}
+
+.controls {
+    background-color: #2E5077;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1em 0;
+    border-bottom: 2px solid gray ;
+}
+
+.btn {
+    padding: 0.5em 0.75em;
+    font-family: var(--text1);
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    border: none;
+    border-radius: 0.5em;
+    background-color: #FCDE70;
+    box-shadow: 0 5px 0 #7c6413;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.btn:hover {
+    background-color: #E8B86D;
+}
+
+.btn:active {
+    transform: translateY(5px);
+    box-shadow: 0 0 0 ;
+}
+
+
+main {
+    display: flex;
+    justify-content: center;
+    margin: 2em 0;
+}
+
+#array-container{
+    max-width: 70%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: #28282B;
+    border-radius: 10px;
+}
+
+.bar {
+    width: 3em;
+    padding: 0 0.25em;
+    background-color: #99D1D5;
+    margin: 2em 1em;
+    transition: transform 0.25s linear 0.1s;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+#controls {
+    margin-bottom: 20px;
+    margin-left: 50px;
+}
+
+/* Typography */
+
+.heading {
+    font-family: var(--text1);
+    letter-spacing: 1px;
+}
+
+.bar {
+    font-family: var(--text2);
+    font-size: 0.9rem;
+    letter-spacing: -0.5px;
+}
+
+
+
+
+
