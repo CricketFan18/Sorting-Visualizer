@@ -71,23 +71,28 @@ main {
     border-radius: 10px;
     overflow: hidden;
     height: 300px;
-    width: 600px;
+    width: 60%;
+    max-width: 600px;
 }
 
 .bar {
-    width: 2.25em;
-    margin: 1.5em 1em;
+    width: 10%;
     background-color: #99D1D5;
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
+    box-shadow: inset -2px 0 5px #31969d;
+    color: var(--textColor);
 }
 
 .highlighted {
     background-color: #C40233;
+    box-shadow: inset -2px 0 5px #61091f;
+}
+
+.sorted {
+    background-color: #50C878;
+    box-shadow: inset -2px 0 5px #23703d;
 }
 
 /* Typography */
