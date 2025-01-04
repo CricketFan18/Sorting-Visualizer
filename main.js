@@ -4,7 +4,6 @@ const bubbleSortButton = document.querySelector(".bubble-sort");
 const autoButton = document.querySelector(".auto");
 const stopButton = document.querySelector(".stop");
 let numbers = [10,20,30,40,50,60,70,80,90,100];
-let shuffledNumber = shuffleArray(numbers);
 let automate;
 
 function shuffleArray(array) {
@@ -15,8 +14,8 @@ function shuffleArray(array) {
     return array;
 }
 
-function renderArray() {
-    shuffledNumber.forEach((number)=> {
+function renderArray(array) {
+    array.forEach((number)=> {
         const div = document.createElement("div");
         div.style.height = `${number*2.5}px`;
         div.classList.add("bar");
@@ -29,7 +28,6 @@ async function bubbleSort(array) {
     const bars = document.querySelectorAll(".bar");
     for(let i = 0 ; i < array.length - 1 ; i++ ) {
         for(let j = 0 ; j < array.length - i - 1 ; j++ ) {
-            console.log(`${array[j]} , ${array[j+1]}`)
             HighlightBars(bars[j] , bars[j+1]);
             const a = await nextStep();
             if(array[j] > array[j+1])
@@ -54,44 +52,43 @@ function nextStep() {
 
 function canSwap(bar1,bar2) {
     return new Promise((resolve)=> {
-        const tempHeight = bar1.style.height;
-        bar1.style.height = bar2.style.height;
-        bar2.style.height = tempHeight;
-        const tempText = bar1.textContent;
-        bar1.textContent = bar2.textContent;
-        bar2.textContent = tempText;
-        console.log("swap animation...");
-        resolve();
-    },500);
+        setTimeout(()=> {
+            const tempHeight = bar1.style.height;
+            bar1.style.height = bar2.style.height;
+            bar2.style.height = tempHeight;
+            const tempText = bar1.textContent;
+            bar1.textContent = bar2.textContent;
+            bar2.textContent = tempText;
+            console.log("swap animation...");
+            resolve(true);
+        },200);                
+    });
 }
 
-function HighlightBars(bar1,bar2) {
-    console.log("highlighted");
-    
-    bar1.style.backgroundColor = "#C40233";
-    bar2.style.backgroundColor = "#C40233";
+function HighlightBars(bar1,bar2) {    
+    bar1.classList.add("highlighted");
+    bar2.classList.add("highlighted");
 }
 
 function UnHighlightBars(bar1,bar2) {
-    console.log("unhighlighted");
-    
-    bar1.style.backgroundColor = "#99D1D5";
-    bar2.style.backgroundColor = "#99D1D5";
+    bar1.classList.remove("highlighted");
+    bar2.classList.remove("highlighted");
 }
 
 
-bubbleSortButton.addEventListener("click",()=> {
+bubbleSortButton.addEventListener("click",()=> { 
+    containerEl.innerHTML = "";
+    let shuffledNumber = shuffleArray(numbers);
+    renderArray(shuffledNumber);
     bubbleSort(shuffledNumber);
 })
 
 autoButton.addEventListener("click",()=> {
     automate = setInterval(()=>{
         nextButton.click();
-    },1000);
+    },500);
 })
 
 stopButton.addEventListener("click",()=> {
     clearInterval(automate);
 })
-
-renderArray();
