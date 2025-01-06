@@ -10,12 +10,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
+    <header class="header">
         <div class="heading">
             <h1>Sorting Visualizer</h1>
         </div>        
         <div class="controls">
-            <button class="btn bubble-sort">Bubble Sort</button>
+            <div class="sorts">
+                <button class="btn bubble-sort">Bubble Sort</button>
+                <button class="btn selection-sort">Selection Sort</button>
+            </div>            
             <button class="btn next">Next Step</button>
             <div class="automate">
                 <button class="btn auto">Automate</button>
@@ -24,10 +27,28 @@
         </div>
     </header>
     <main>
+        <div class="description">
+            <h2 class="desc-heading">Sorting Algorithms</h2>
+            <p class="desc">Sorting algorithms are methods used to arrange elements in a list or array in a particular order, typically ascending or descending. They play a crucial role in computer science by optimizing data search, retrieval, and analysis processes.
+            </p>
+            <p  class="temp">
+                Select one of the sorting algorithms to proceed.
+            </p>
+            <ul class="desc-steps">
+            </ul>
+            <div class="complexity">
+                <p>Time Complexity : O(N<sup>2</sup>)</p>
+                <p>Space Complexity : O(1)</p>
+            </div>
+            
+        </div>
         <div class="container">
             
         </div>
     </main>    
+    <footer class="footer">
+        &#169 Vivek Kesarwani
+    </footer>
     <script src="main.js"></script>
 </body>
 </html>

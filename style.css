@@ -11,6 +11,9 @@ body {
 h1 {
     margin: 0;
 }
+h2 {
+    margin: 0;
+}
 
 /* Layout */
 
@@ -26,6 +29,9 @@ h1 {
 .controls {
     background-color: #2E5077;
     display: flex;
+    flex-wrap: wrap;
+    row-gap: 1.25em;
+    column-gap: 1em;
     align-items: center;
     justify-content: space-evenly;
     padding: 1em 0;
@@ -57,12 +63,55 @@ h1 {
 
 
 main {
-    display: flex;
-    justify-content: center;
-    margin: 2em 0;
+    margin: 1em  ;
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    column-gap: 1em;
+    row-gap: 1.5em;
+}
+
+.description {
+    max-width: 500px;
+    margin-left: 1em;
+    color: #28282B;
+    font-family: var(--text1);
+}
+.desc-heading {
+    padding-left: 0.35em;
+}
+
+.desc {
+    padding-left: 0.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0;
+}
+
+.desc-steps {
+    margin-bottom: 0;
+    width: 75%;
+}
+
+.desc-steps li {
+    font-size: 0.9rem;
+}
+
+.complexity {
+    padding-left: 0.5em;
+    display: none;
+}
+
+.temp {
+    font-weight: 500;
+    font-size: 18px; 
+    position: relative; 
+    left: 7px;
+    margin-bottom: 0;
 }
 
 .container {
+    justify-self: end;
+    margin-right: 1em;
+    margin-bottom: 5em;
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -70,9 +119,8 @@ main {
     padding: 0 2em;
     border-radius: 10px;
     overflow: hidden;
-    height: 300px;
-    width: 60%;
-    max-width: 600px;
+    width: 80%;
+    height: 400px;
 }
 
 .bar {
@@ -95,6 +143,11 @@ main {
     box-shadow: inset -2px 0 5px #23703d;
 }
 
+.check {
+    background-color: #572991;
+    box-shadow: inset -2px 0 5px #441f72;
+}
+
 /* Typography */
 
 .heading {
@@ -106,6 +159,41 @@ main {
     font-family: var(--text2);
     font-size: 0.9rem;
     letter-spacing: -0.5px;
+}
+
+.footer{
+    font-size: 1.25rem;
+    text-align: center;
+    font-family: var(--text1);
+}
+
+@media (min-width:700px) and (max-width:1024px) {
+   .container {
+    margin-right: 0;
+   }
+}
+
+@media (min-width:300px) and (max-width:700px) {
+    .header {
+        position: sticky;
+        top: 0px;
+        z-index: 100;
+    }
+
+   main {
+    grid-template-columns: 1fr;
+    justify-items: center;
+   }
+
+   .description {
+    max-width: 100%;
+    margin-left: 0;
+   }
+
+   .container {
+    justify-self: unset;
+    margin-right: 0;
+   }
 }
 
 
