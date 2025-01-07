@@ -14,6 +14,7 @@ An interactive web-based tool to visualize sorting algorithms in action! This pr
 
 - **Customizable Settings**:
   - Generate random arrays for each run.
+  - Control speed of the process.
 
 - **Responsive Design**:
   - Works seamlessly on desktops, tablets, and mobile devices.
