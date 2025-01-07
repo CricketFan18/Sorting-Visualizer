@@ -108,10 +108,16 @@ main {
     margin-bottom: 0;
 }
 
+.sort {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 .container {
     justify-self: end;
     margin-right: 1em;
-    margin-bottom: 5em;
+    margin-bottom: 1em;
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -131,6 +137,17 @@ main {
     align-items: flex-end;
     box-shadow: inset -2px 0 5px #31969d;
     color: var(--textColor);
+}
+
+.slider {
+    margin-right: 3em;
+    font-family: var(--text2);
+    font-size: 1rem;
+}
+
+.slider label {
+    position: relative;
+    top: -3px;
 }
 
 .highlighted {

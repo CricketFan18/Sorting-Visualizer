@@ -9,6 +9,8 @@ const desc = document.querySelector(".desc");
 const temp = document.querySelector(".temp");
 const descSteps = document.querySelector(".desc-steps");
 const complexity = document.querySelector(".complexity");
+const speedSlider = document.getElementById("speedSlider");
+let speed = parseInt(speedSlider.value);
 let numbers = [10,20,30,40,50,60,70,80,90,100];
 let automate;
 
@@ -23,11 +25,12 @@ const descSorts = [ {
 }];
 
 function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
+    const clone = [...array];
+    for (let i = clone.length - 1; i > 0; i--) {
         const randomIndex = Math.floor(Math.random() * (i + 1));
-        [array[i], array[randomIndex]] = [array[randomIndex], array[i]];
+        [clone[i], clone[randomIndex]] = [clone[randomIndex], clone[i]];
     }
-    return array;
+    return clone;
 }
 
 function renderArray(array) {
@@ -44,14 +47,14 @@ async function bubbleSort(array) {
     const bars = document.querySelectorAll(".bar");
     for(let i = 0 ; i < array.length - 1 ; i++ ) {
         for(let j = 0 ; j < array.length - i - 1 ; j++ ) {
-            await HighlightBars([bars[j] , bars[j+1]],100);
+            await HighlightBars([bars[j] , bars[j+1]],speed);
             await nextStep();
             if(array[j] > array[j+1])
             {
-                await canSwap(bars[j] , bars[j+1],100);
+                await canSwap(bars[j] , bars[j+1],speed);
                 [array[j], array[j + 1]] = [array[j + 1], array[j]];  
             }
-            await UnHighlightBars([bars[j] , bars[j+1]],200)
+            await UnHighlightBars([bars[j] , bars[j+1]],2*speed)
         }
         bars[bars.length - i - 1].classList.add("sorted");
     }    
@@ -63,20 +66,20 @@ async function selectionSort(array) {
     const bars = document.querySelectorAll(".bar");
     for(let i = 0 ; i < array.length - 1 ; i++ ) {
         let minIndex = i;
-        await CheckBars([bars[minIndex]],50);
+        await CheckBars([bars[minIndex]],speed/2);
         for(let j = i+1 ; j < array.length ; j++ ) {
-            await HighlightBars([bars[j]],100);
+            await HighlightBars([bars[j]],speed);
             await nextStep();
             if(array[j] < array[minIndex]) {
-                await UncheckBars([bars[minIndex]],50);
+                await UncheckBars([bars[minIndex]],speed/2);
                 minIndex = j;
-                await CheckBars([bars[minIndex]],50);
+                await CheckBars([bars[minIndex]],speed/2);
             }
-            await UnHighlightBars([bars[j]],100)
+            await UnHighlightBars([bars[j]],speed)
         }
-        await canSwap(bars[minIndex],bars[i],100);
+        await canSwap(bars[minIndex],bars[i],speed);
         [array[minIndex], array[i]] = [array[i], array[minIndex]];  
-        await UncheckBars([bars[minIndex]],100);
+        await UncheckBars([bars[minIndex]],speed);
         bars[i].classList.add("sorted");
     }    
     bars[array.length-1].classList.add("sorted");
@@ -86,8 +89,8 @@ function nextStep() {
     return new Promise((resolve)=> {
         nextButton.addEventListener("click",()=>{
             resolve(true);
-        }) 
-    })
+        },{ once: true }); 
+    });
 }
 
 function canSwap(bar1,bar2,time) {
@@ -190,6 +193,9 @@ selectionSortButton.addEventListener("click",()=> {
     },300);    
 })
 
+speedSlider.addEventListener("input", () => {
+    speed = parseInt(speedSlider.value);
+});
 
 autoButton.addEventListener("click",()=> {
     automate = setInterval(()=>{
@@ -198,7 +204,7 @@ autoButton.addEventListener("click",()=> {
 })
 
 stopButton.addEventListener("click",()=> {
-    clearInterval(automate);
+    if (automate) clearInterval(automate);
 })
 
 renderArray(numbers);
